@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { PlayButton, PauseButton, NextButton, PreviousButton } from './Icons'
+import Analysis from './Analysis'
 
 export default function WebPlayback({ token }) {
   const [active, setActive] = useState(false)
   const [player, setPlayer] = useState(undefined)
   const [playerState, setPlayerState] = useState(undefined)
   const [estimatedPosition, setEstimatedPosition] = useState(0)
+  const [trackAnalysis, setTrackAnalysis] = useState(undefined)
 
   useEffect(() => {
     const script = document.createElement('script')
@@ -37,6 +39,8 @@ export default function WebPlayback({ token }) {
         if (!state) {
           return
         }
+
+        console.log('new state', state)
 
         setPlayerState(state)
         setEstimatedPosition(state.position)
@@ -97,6 +101,8 @@ export default function WebPlayback({ token }) {
           <h2 className="text-2xl">{currentTrack.artists.map((a) => a.name).join(', ')}</h2>
         </div>
 
+        <Analysis songId={currentTrack.id} />
+
         <div className="mt-16 flex justify-center">
           <button onClick={() => player.previousTrack()}>
             <PreviousButton />
@@ -104,7 +110,7 @@ export default function WebPlayback({ token }) {
           <button onClick={() => player.togglePlay()}>
             {playerState.paused ? <PlayButton /> : <PauseButton />}
           </button>
-          <button onClick={() => player.nextTrack()}>
+          <button onClick={async () => player.nextTrack()}>
             <NextButton />
           </button>
         </div>
