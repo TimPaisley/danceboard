@@ -27,7 +27,7 @@ export default function Home() {
     <>
       <Head>
         <title>Danceboard</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <Main>

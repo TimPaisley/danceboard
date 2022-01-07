@@ -54,7 +54,7 @@ export default function Features({ songId, player, isPaused }) {
   // if (!data) return <div>Loading analysis...</div>
 
   return (
-    <div className="rounded-lg px-8 bg-gray-50 text-gray-500 flex items-center border border-gray-100">
+    <div className="bg-gray-50 text-gray-500 dark:bg-gray-600 dark:text-gray-200 rounded-lg px-8 flex items-center border border-gray-100 dark:border-gray-500">
       <div className="flex-1 flex justify-between">
         {data ? (
           <Feature
@@ -111,7 +111,7 @@ function Controls({ player, isPaused }) {
       <button
         type="button"
         onClick={() => player.previousTrack()}
-        className="w-8 h-8"
+        className="w-8 h-8 dark:text-gray-200"
         aria-label="Previous song">
         <PreviousButton />
       </button>
@@ -119,7 +119,7 @@ function Controls({ player, isPaused }) {
       <button
         type="button"
         onClick={() => player.togglePlay()}
-        class="bg-white -my-2 mx-8 w-20 h-20 rounded-full ring-1 ring-gray-900/5 shadow-md flex items-center justify-center"
+        className="bg-white -my-2 mx-8 w-20 h-20 rounded-full ring-1 ring-gray-900/5 shadow-md flex items-center justify-center"
         aria-label="Pause song">
         {isPaused ? <PlayButton /> : <PauseButton />}
       </button>
@@ -127,7 +127,7 @@ function Controls({ player, isPaused }) {
       <button
         type="button"
         onClick={() => player.nextTrack()}
-        className="w-8 h-8"
+        className="w-8 h-8 dark:text-gray-200"
         aria-label="Next song">
         <NextButton />
       </button>

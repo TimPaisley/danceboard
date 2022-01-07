@@ -5,8 +5,8 @@ export default function Tracks({ playerState }) {
 
   return (
     <>
-      <h2 className="text-3xl text-center mb-4">Now playing</h2>
-      <h1 className="text-5xl font-bold text-center">
+      <h2 className="text-3xl text-center mb-4 dark:text-white">Now playing</h2>
+      <h1 className="text-5xl font-bold text-center dark:text-white">
         {playerState.context.metadata.context_description}
       </h1>
 
@@ -22,7 +22,9 @@ export default function Tracks({ playerState }) {
 
       <div className="mt-16 text-center">
         <h1 className="text-5xl font-bold text-cyan-500">{currentTrack.name}</h1>
-        <h2 className="text-3xl mt-4">{currentTrack.artists.map((a) => a.name).join(', ')}</h2>
+        <h2 className="text-3xl mt-4 dark:text-white">
+          {currentTrack.artists.map((a) => a.name).join(', ')}
+        </h2>
       </div>
     </>
   )
@@ -50,8 +52,8 @@ function SecondaryTrack({ track }) {
       />
 
       <div>
-        <h1 className="mt-4 text-xl font-bold">{track?.name}</h1>
-        <h2 className="text-md">{track?.artists.map((a) => a.name).join(', ')}</h2>
+        <h1 className="mt-4 text-xl font-bold dark:text-white">{track?.name}</h1>
+        <h2 className="text-md dark:text-white">{track?.artists.map((a) => a.name).join(', ')}</h2>
       </div>
     </div>
   )
