@@ -1,4 +1,4 @@
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 
 export default function Header() {
   const { data: session } = useSession()
@@ -10,7 +10,7 @@ export default function Header() {
   })
 
   return (
-    <div className="flex justify-between align-middle h-24 px-8">
+    <div className="flex justify-between items-start h-24">
       <div className="flex flex-col justify-center w-72">
         {session?.token && <SessionManagement session={session} />}
       </div>
@@ -21,7 +21,7 @@ export default function Header() {
         alt="Logo"
       />
 
-      <div className="flex flex-col justify-center w-72 text-2xl text-right">
+      <div className="flex flex-col justify-center w-72 text-2xl text-right font-mono font-bold">
         {session?.token && currentTime}
       </div>
     </div>

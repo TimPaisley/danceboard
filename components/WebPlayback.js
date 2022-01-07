@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
-import { PlayButton, PauseButton, NextButton, PreviousButton } from './Icons'
 import Features from './Features'
+import ProgressBar from './ProgressBar'
+import Tracks from './Tracks'
 
 export default function WebPlayback({ token }) {
   const [active, setActive] = useState(false)
@@ -74,84 +75,24 @@ export default function WebPlayback({ token }) {
       </div>
     )
   } else {
-    const previousTracks = playerState.track_window.previous_tracks
-    const currentTrack = playerState.track_window.current_track
-    const nextTracks = playerState.track_window.next_tracks
-
     return (
-      <div className="mt-16">
-        <h2 className="text-xl text-center">Now playing</h2>
-        <h1 className="text-3xl font-bold text-center">
-          {playerState.context.metadata.context_description}
-        </h1>
-
-        <div className="mt-16 w-full flex justify-center">
-          <SecondaryTrack track={previousTracks.length > 1 ? previousTracks[0] : undefined} />
-          <SecondaryTrack track={previousTracks[1] || previousTracks[0]} />
-
-          <PrimaryTrack track={currentTrack} />
-
-          <SecondaryTrack track={nextTracks[0]} />
-          <SecondaryTrack track={nextTracks[1]} />
+      <div className="flex flex-col justify-between items-stretch h-full">
+        <div className="flex-1 my-16 flex flex-col justify-center">
+          <Tracks playerState={playerState} />
         </div>
 
-        <div className="text-center">
-          <h1 className="mt-4 text-4xl font-bold">{currentTrack.name}</h1>
-          <h2 className="text-2xl">{currentTrack.artists.map((a) => a.name).join(', ')}</h2>
+        <div className="mt-16">
+          <div className="mb-8">
+            <ProgressBar position={estimatedPosition} duration={playerState.duration} />
+          </div>
+
+          <Features
+            songId={playerState.track_window.current_track.id}
+            player={player}
+            isPaused={playerState.paused}
+          />
         </div>
-
-        <Features
-          songId={currentTrack.id}
-          position={estimatedPosition}
-          duration={playerState.duration}
-        />
-
-        <div className="mt-16 flex justify-center">
-          <button onClick={() => player.previousTrack()}>
-            <PreviousButton />
-          </button>
-          <button onClick={() => player.togglePlay()}>
-            {playerState.paused ? <PlayButton /> : <PauseButton />}
-          </button>
-          <button onClick={async () => player.nextTrack()}>
-            <NextButton />
-          </button>
-        </div>
-
-        <ProgressBar progress={(estimatedPosition / playerState.duration) * 100} />
       </div>
     )
   }
-}
-
-function PrimaryTrack({ track }) {
-  return (
-    <div className="w-96 mx-8 text-center">
-      <img src={track.album.images[0].url} className="w-full rounded-2xl" alt="" />
-    </div>
-  )
-}
-
-function SecondaryTrack({ track }) {
-  return (
-    <div className="w-48 mx-8 text-center">
-      <img src={track?.album.images[0].url || ''} className="w-full rounded-2xl" alt="" />
-
-      <div>
-        <h1 className="mt-4 text-xl font-bold">{track?.name}</h1>
-        <h2 className="text-md">{track?.artists.map((a) => a.name).join(', ')}</h2>
-      </div>
-    </div>
-  )
-}
-
-function ProgressBar({ progress }) {
-  return (
-    <div className="mx-8 mt-8 relative h-1 bg-black">
-      <div
-        className="absolute w-6 h-6 rounded-full -top-2.5 bg-black"
-        style={{ left: `${progress}%` }}
-      />
-    </div>
-  )
 }
