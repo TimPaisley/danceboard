@@ -3,7 +3,7 @@ import Features from './Features'
 import ProgressBar from './ProgressBar'
 import Tracks from './Tracks'
 
-export default function WebPlayback({ token }) {
+export default function WebPlayback({ token, setUri }) {
   const [active, setActive] = useState(false)
   const [player, setPlayer] = useState(undefined)
   const [playerState, setPlayerState] = useState(undefined)
@@ -60,6 +60,8 @@ export default function WebPlayback({ token }) {
         setEstimatedPosition((state) => state + 1000)
       }
     }, 1000)
+
+    setUri(playerState?.context.uri)
 
     return () => clearInterval(timer)
   }, [playerState])

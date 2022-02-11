@@ -9,6 +9,7 @@ export default function Home() {
   const { data: session, status } = useSession()
 
   const [token, setToken] = useState('')
+  const [uri, setUri] = useState()
 
   useEffect(() => {
     async function getToken() {
@@ -31,10 +32,10 @@ export default function Home() {
       </Head>
 
       <Main>
-        <Header />
+        <Header uri={uri} />
 
         {token !== '' ? (
-          <WebPlayback token={token} />
+          <WebPlayback token={token} setUri={setUri} />
         ) : (
           <div className="mt-16 text-center">
             <h1 className="text-3xl font-bold">Sign in with Spotify</h1>
