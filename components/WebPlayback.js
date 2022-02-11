@@ -77,7 +77,7 @@ export default function WebPlayback({ token }) {
   } else {
     return (
       <div className="flex flex-col justify-between items-stretch h-full">
-        <div className="flex-1 my-16 flex flex-col justify-center">
+        <div className="flex-1 flex flex-col justify-center">
           <Tracks playerState={playerState} />
         </div>
 

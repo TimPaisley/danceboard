@@ -13,12 +13,10 @@ export default function Header() {
   })
 
   return (
-    <div className="flex justify-between items-start h-24">
+    <div className="flex justify-between items-start">
       <div className="flex flex-col justify-center w-72">
         {session?.token && <SessionManagement session={session} />}
       </div>
-
-      <img className="h-16" src={`/banner-${theme || 'light'}.png`} alt="Logo" />
 
       <div className="flex justify-end w-72 text-2xl font-mono font-bold dark:text-white">
         <p className="mr-8">{session?.token && currentTime}</p>
