@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Features from './Features'
 import ProgressBar from './ProgressBar'
 import Tracks from './Tracks'
+import Welcome from './Welcome'
 
 export default function WebPlayback({ token, setUri }) {
   const [active, setActive] = useState(false)
@@ -67,15 +68,7 @@ export default function WebPlayback({ token, setUri }) {
   }, [playerState])
 
   if (!active) {
-    return (
-      <div className="mt-16 text-center">
-        <h1 className="text-3xl font-bold">Danceboard is ready!</h1>
-
-        <p className="mt-8">
-          Open the Spotify app and transfer playback to Danceboard to get started.
-        </p>
-      </div>
-    )
+    return <Welcome ready />
   } else {
     return (
       <div className="flex flex-col justify-between items-stretch h-full">
