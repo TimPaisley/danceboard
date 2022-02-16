@@ -2,6 +2,8 @@
 
 A Spotify web player built for dance parties
 
+![Screenshot of Danceboard](public/screen.png)
+
 ## Table of Contents
 
 - [Components](#project)
