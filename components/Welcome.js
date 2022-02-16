@@ -47,8 +47,8 @@ export default function Welcome({ ready = false }) {
       <h2 className="text-2xl">Using your Spotify app, start playing from your playlist</h2>
 
       <p className="mt-8">
-        Once you're connected to Danceboard, you can use any device logged into your Spotify account
-        to control your music. Start playing music from your playlist as you normally would.
+        Once you&apos;re connected to Danceboard, you can use any device logged into your Spotify
+        account to control your music. Start playing music from your playlist as you normally would.
       </p>
 
       <p className="mt-12 text-sm font-bold">Step 4</p>
